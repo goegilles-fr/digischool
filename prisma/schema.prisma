@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+model Prof {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  nom            String
+  prenom         String
+  dateNaissance  DateTime
+  adresse        String
+  sexe           String
+  
+  // Relations
+  classes        Classe[]
+  notes          Note[]
+}
+
+model Classe {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  nom      String
+  profId   String  @db.ObjectId
+  
+  // Relations
+  prof     Prof    @relation(fields: [profId], references: [id])
+  eleves   Eleve[]
+  notes    Note[]
+}
+
+model Eleve {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  nom            String
+  prenom         String
+  classeId       String   @db.ObjectId
+  date_naissance DateTime
+  adresse        String
+  sexe           String
+  
+  // Relations
+  classe         Classe   @relation(fields: [classeId], references: [id])
+  notes          Note[]
+}
+
+model Matiere {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  nom    String
+  
+  // Relations
+  notes  Note[]
+}
+
+model Trimestre {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  nom    String
+  date   DateTime
+  
+  // Relations
+  notes  Note[]
+}
+
+model Note {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  date_saisie  DateTime
+  eleveId      String   @db.ObjectId
+  classeId     String   @db.ObjectId
+  matiereId    String   @db.ObjectId
+  profId       String   @db.ObjectId
+  trimestreId  String   @db.ObjectId
+  note         Float
+  avis         String?
+  avancement   String?
+  
+  // Relations
+  eleve        Eleve     @relation(fields: [eleveId], references: [id])
+  classe       Classe    @relation(fields: [classeId], references: [id])
+  matiere      Matiere   @relation(fields: [matiereId], references: [id])
+  prof         Prof      @relation(fields: [profId], references: [id])
+  trimestre    Trimestre @relation(fields: [trimestreId], references: [id])
+}
