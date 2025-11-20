@@ -1,50 +1,50 @@
-const noteController = require('../controllers/noteController');
+const matiereController = require('../controllers/matiereController');
 const express = require('express');
 const router = express.Router();
 
 /**
  * @openapi
- * /api/notes:
+ * /api/matieres:
  *   get:
  *     tags:
- *       - Notes
- *     summary: Get all notes
+ *       - Matieres
+ *     summary: Get all matieres
  *     responses:
  *       200:
- *         description: A list of notes
+ *         description: A list of matieres
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 type: object
+ *                 type: object 
  */
-router.get('/notes', noteController.getAllNotes);
+router.get('/matieres', matiereController.getAllMatieres);
 
 /**
  * @openapi
- * /api/notes/{id}:
+ * /api/matieres/{id}:
  *   get:
  *     tags:
- *       - Notes
- *     summary: Get a note by ID
+ *       - Matieres
+ *     summary: Get a matiere by ID
  *     parameters:
  *       - name: id
  *         in: path
- *         description: ID of the note to retrieve
+ *         description: ID of the matiere to get
  *         required: true
  *         schema:
  *           type: integer
  */
-router.get('/notes/:id', noteController.getNoteById);
+router.get('/matieres/:id', matiereController.getMatiereById);
 
 /**
  * @openapi
- * /api/notes:
+ * /api/matieres:
  *   post:
  *     tags:
- *       - Notes
- *     summary: Create a new note
+ *       - Matieres
+ *     summary: Create a new matiere
  *     requestBody:
  *       required: true
  *       content:
@@ -52,43 +52,43 @@ router.get('/notes/:id', noteController.getNoteById);
  *           schema:
  *             type: object
  *             properties:
- *               note:
+ *               nom:
  *                 type: string
  */
-router.post('/notes', noteController.createNote);
+router.post('/matieres', matiereController.createMatiere);
 
 /**
  * @openapi
- * /api/notes/{id}:
+ * /api/matieres/{id}:
  *   put:
  *     tags:
- *       - Notes
- *     summary: Update a note by ID
+ *       - Matieres
+ *     summary: Update a matiere by ID
  *     parameters:
  *       - name: id
  *         in: path
- *         description: ID of the note to update
+ *         description: ID of the matiere to update
  *         required: true
  *         schema:
  *           type: integer
  */
-router.put('/notes/:id', noteController.updateNote);
+router.put('/matieres/:id', matiereController.updateMatiere);
 
 /**
  * @openapi
- * /api/notes/{id}:
+ * /api/matieres/{id}:
  *   delete:
  *     tags:
- *       - Notes
- *     summary: Delete a note by ID
+ *       - Matieres
+ *     summary: Delete a matiere by ID
  *     parameters:
  *       - name: id
  *         in: path
- *         description: ID of the note to delete
+ *         description: ID of the matiere to delete
  *         required: true
  *         schema:
  *           type: integer
  */
-router.delete('/notes/:id', noteController.deleteNote);
+router.delete('/matieres/:id', matiereController.deleteMatiere);
 
 module.exports = router;
