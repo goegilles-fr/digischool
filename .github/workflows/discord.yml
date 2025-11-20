@@ -2,7 +2,7 @@ name: Discord Push Notification
 
 on:
   push:
-    branches: ['*'] # Triggers on push to any branch
+    branches: ['*']  # Triggers on push to any branch
 
 jobs:
   notify-discord:
@@ -12,8 +12,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2 # Fetch current and previous commit to compare changes
-
+          fetch-depth: 2  # Fetch current and previous commit to compare changes
+      
       - name: Get changed files
         id: changes
         run: |
@@ -102,25 +102,25 @@ jobs:
                 "fields": [
                   {
                     "name": "",
-                    "value": "📁 \($repo) 💬 \($commit_message)",
+                    "value": "📁 \($repo)       💬 \($commit_message)",
+                    "inline": false
+                  },
+                  {
+                    "name": "✅ Files Added",
+                    "value": $added,
+                    "inline": false
+                  },
+                  {
+                    "name": "📝 Files Modified", 
+                    "value": $modified,
+                    "inline": false
+                  },
+                  {
+                    "name": "❌ Files Deleted",
+                    "value": $deleted, 
                     "inline": false
                   }
-                ] + 
-                (if $added != "None" then [{
-                  "name": "✅ Files Added",
-                  "value": $added,
-                  "inline": false
-                }] else [] end) +
-                (if $modified != "None" then [{
-                  "name": "📝 Files Modified",
-                  "value": $modified,
-                  "inline": false
-                }] else [] end) +
-                (if $deleted != "None" then [{
-                  "name": "❌ Files Deleted",
-                  "value": $deleted,
-                  "inline": false
-                }] else [] end),
+                ],
                 "timestamp": $timestamp,
                 "footer": {
                   "text": "GitHub Actions",
