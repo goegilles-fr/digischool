@@ -7,8 +7,8 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = require('./swagger.js');
 
 // routes
-const eleveRoutes = require('./routes/eleveRouter');
-const matiereRoutes = require('./routes/matiereRouter');
+const eleveRoutes = require('./routes/eleveRoutes');
+const matiereRoutes = require('./routes/matiereRoutes');
 const profRoutes = require('./routes/profRoutes');
 const classeRoutes = require('./routes/classeRoutes');
 const noteRoutes = require('./routes/noteRoutes');
