@@ -5,12 +5,16 @@ var app = express();
 // routes
 const eleveRoutes = require('./routes/eleveRouter');
 const matiereRoutes = require('./routes/matiereRouter');
+const profRoutes = require('./routes/profRoutes');
+const classeRoutes = require('./routes/classeRoutes');
 
 //Middleware
 app.use(express.json())
 
 app.use('/api', eleveRoutes);
 app.use('/api', matiereRoutes);
+app.use('/api', profRoutes);
+app.use('/api', classeRoutes);
 
 // Handle error 404
 app.use(function(req, res) {
