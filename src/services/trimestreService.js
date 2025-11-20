@@ -1,4 +1,4 @@
-const Trimestre = require('../models/Trimestre');
+
 const trimestreRepository = require('../repositories/trimestreRepository');
 
 exports.getAllTrimestres = async () => {
