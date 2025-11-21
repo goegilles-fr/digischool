@@ -16,6 +16,9 @@ npx prisma generate
 
 # 5. Start the server
 npm start
+
+# 6. To access the swagger
+http://localhost:8080/api-docs/
 ```
 
 ## ⚙️ Environment Variables

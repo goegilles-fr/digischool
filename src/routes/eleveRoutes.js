@@ -1,5 +1,5 @@
-const eleveController = require('../controllers/eleveController');
-const express = require('express');
+const eleveController = require("../controllers/eleveController");
+const express = require("express");
 const router = express.Router();
 
 /**
@@ -19,7 +19,7 @@ const router = express.Router();
  *               items:
  *                 type: object
  */
-router.get('/eleves', eleveController.getAllEleves);
+router.get("/eleves", eleveController.getAllEleves);
 
 /**
  * @openapi
@@ -43,7 +43,7 @@ router.get('/eleves', eleveController.getAllEleves);
  *             schema:
  *               type: object
  */
-router.get('/eleves/:id', eleveController.getEleveById);
+router.get("/eleves/:id", eleveController.getEleveById);
 
 /**
  * @openapi
@@ -66,8 +66,21 @@ router.get('/eleves/:id', eleveController.getEleveById);
  *               classe:
  *                 type: string
  *               date_naissance:
+ *                 type: string
+ *                 example: '1979-09-05T23:09:19.790Z'
+ *               adresse:
+ *                 type: string
+ *               sexe:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: The created eleve
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
-router.post('/eleves', eleveController.createEleve);
+router.post("/eleves", eleveController.createEleve);
 
 /**
  * @openapi
@@ -98,8 +111,18 @@ router.post('/eleves', eleveController.createEleve);
  *                 type: string
  *               date_naissance:
  *                 type: string
+ *                 example: '1979-09-05T23:09:19.790Z'
+ *               adresse:
+ *                 type: string
+ *               sexe:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: The updated eleve
+ *         content:
+ *           application/json:
  */
-router.put('/eleves/:id', eleveController.updateEleve);
+router.put("/eleves/:id", eleveController.updateEleve);
 
 /**
  * @openapi
@@ -116,6 +139,6 @@ router.put('/eleves/:id', eleveController.updateEleve);
  *         schema:
  *           type: integer
  */
-router.delete('/eleves/:id', eleveController.deleteEleve);
+router.delete("/eleves/:id", eleveController.deleteEleve);
 
 module.exports = router;

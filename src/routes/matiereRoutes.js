@@ -71,6 +71,15 @@ router.post('/matieres', matiereController.createMatiere);
  *         required: true
  *         schema:
  *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nom:
+ *                 type: string
  */
 router.put('/matieres/:id', matiereController.updateMatiere);
 
