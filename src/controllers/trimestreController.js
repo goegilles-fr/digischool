@@ -6,7 +6,7 @@ exports.getAllTrimestres = async (req, res) => {
 }
 
 exports.getTrimestreById = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const trimestre = await trimestreService.getTrimestreById(id);
     res.status(200).json(trimestre);
 }
@@ -18,14 +18,14 @@ exports.createTrimestre = async (req, res) => {
 }
 
 exports.updateTrimestre = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const trimestre = req.body;
     const updatedTrimestre = await trimestreService.updateTrimestre(id, trimestre);
     res.status(200).json(updatedTrimestre);
 }
 
 exports.deleteTrimestre = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const deletedTrimestre = await trimestreService.deleteTrimestre(id);
     res.status(200).json(deletedTrimestre);
 }

@@ -1,32 +1,60 @@
-let notes = [];
+const { PrismaClient } = require('../generated/prisma');
+const prisma = new PrismaClient();
 
 exports.getAllNotes = async () => {
-    return notes;
+    return await prisma.note.findMany({
+        include: {
+            eleve: true,
+            classe: true,
+            matiere: true,
+            prof: true,
+            trimestre: true
+        }
+    });
 };
 
 exports.getNoteById = async (id) => {
-    return notes.find(note => note.idnotes === id);
+    return await prisma.note.findUnique({
+        where: { id: id },
+        include: {
+            eleve: true,
+            classe: true,
+            matiere: true,
+            prof: true,
+            trimestre: true
+        }
+    });
 };
 
 exports.createNote = async (note) => {
-    notes.push(note);
-    return note;
+    return await prisma.note.create({
+        data: note,
+        include: {
+            eleve: true,
+            classe: true,
+            matiere: true,
+            prof: true,
+            trimestre: true
+        }
+    });
 };
 
 exports.updateNote = async (id, note) => {
-    const index = notes.findIndex(note => note.idnotes === id);
-    if (index !== -1) {
-        notes[index] = note;
-        return note;
-    }
-    return null;
+    return await prisma.note.update({
+        where: { id: id },
+        data: note,
+        include: {
+            eleve: true,
+            classe: true,
+            matiere: true,
+            prof: true,
+            trimestre: true
+        }
+    });
 };
 
 exports.deleteNote = async (id) => {
-    const index = notes.findIndex(note => note.idnotes === id);
-    if (index !== -1) {
-        notes.splice(index, 1);
-        return true;
-    }
-    return false;
+    return await prisma.note.delete({
+        where: { id: id }
+    });
 };

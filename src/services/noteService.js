@@ -1,4 +1,3 @@
-
 const noteRepository = require('../repositories/noteRepository');
 
 exports.getAllNotes = async () => {
@@ -12,13 +11,33 @@ exports.getNoteById = async (id) => {
 };
 
 exports.createNote = async (datas) => {
-    let note = new Note(datas.idnotes, datas.date_saisie, datas.ideleve, datas.idclasse, datas.idmatiere, datas.idprof, datas.idtrimestre, datas.note, datas.avis, datas.avancement);
+    const note = {
+        date_saisie: new Date(datas.date_saisie),
+        eleveId: datas.eleveId,
+        classeId: datas.classeId,
+        matiereId: datas.matiereId,
+        profId: datas.profId,
+        trimestreId: datas.trimestreId,
+        note: parseFloat(datas.note),
+        avis: datas.avis || null,
+        avancement: datas.avancement || null
+    };
     const createdNote = await noteRepository.createNote(note);
     return createdNote;
 };
 
 exports.updateNote = async (id, datas) => {
-    let note = new Note(datas.idnotes, datas.date_saisie, datas.ideleve, datas.idclasse, datas.idmatiere, datas.idprof, datas.idtrimestre, datas.note, datas.avis, datas.avancement);
+    const note = {
+        date_saisie: new Date(datas.date_saisie),
+        eleveId: datas.eleveId,
+        classeId: datas.classeId,
+        matiereId: datas.matiereId,
+        profId: datas.profId,
+        trimestreId: datas.trimestreId,
+        note: parseFloat(datas.note),
+        avis: datas.avis || null,
+        avancement: datas.avancement || null
+    };
     const updatedNote = await noteRepository.updateNote(id, note);
     return updatedNote;
 };

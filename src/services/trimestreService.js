@@ -1,4 +1,3 @@
-
 const trimestreRepository = require('../repositories/trimestreRepository');
 
 exports.getAllTrimestres = async () => {
@@ -12,13 +11,21 @@ exports.getTrimestreById = async (id) => {
 };
 
 exports.createTrimestre = async (datas) => {
-    let trimestre = new Trimestre(datas.idtrimestre, datas.nom, datas.date);
+   
+    const trimestre = {
+        nom: datas.nom,
+        date: new Date(datas.date)
+    };
     const createdTrimestre = await trimestreRepository.createTrimestre(trimestre);
     return createdTrimestre;
 };
 
 exports.updateTrimestre = async (id, datas) => {
-    let trimestre = new Trimestre(datas.idtrimestre, datas.nom, datas.date);
+ 
+    const trimestre = {
+        nom: datas.nom,
+        date: new Date(datas.date)
+    };
     const updatedTrimestre = await trimestreRepository.updateTrimestre(id, trimestre);
     return updatedTrimestre;
 };
