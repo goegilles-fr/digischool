@@ -52,8 +52,17 @@ router.get('/trimestres/:id', trimestreController.getTrimestreById);
  *           schema:
  *             type: object
  *             properties:
- *               trimestre:
+ *               nom:
  *                 type: string
+ *               date:
+ *                 type: string
+ *                 example: '1979-09-05T23:09:19.790Z'
+ *     responses:
+ *       200:
+ *         description: The created trimestre
+ *         content:
+ *           application/json:
+ *             schema:
  */
 router.post('/trimestres', trimestreController.createTrimestre);
 
@@ -70,7 +79,19 @@ router.post('/trimestres', trimestreController.createTrimestre);
  *         description: ID of the trimestre to update
  *         required: true
  *         schema:
- *           type: integer
+ *           type: object
+ *           properties:
+ *             nom:
+ *                type: string
+ *             date:
+ *                 type: string
+ *                 example: '1979-09-05T23:09:19.790Z'
+ *     responses:
+ *       200:
+ *         description: The updated trimestre
+ *         content:
+ *           application/json:
+ *             schema:
  */
 router.put('/trimestres/:id', trimestreController.updateTrimestre);
 

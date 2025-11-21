@@ -57,13 +57,12 @@ router.get('/profs/:id', profController.getProfById);
  *                 type: string
  *               prenom:
  *                 type: string
- *               email:
- *                 type: string
- *               password:
- *                 type: string
  *               date_naissance:
  *                 type: string
- *               date_embauche:
+ *                 example: '1979-09-05T23:09:19.790Z'
+ *               adresse:
+ *                 type: string
+ *               sexe:
  *                 type: string
  *     responses:
  *       200:
@@ -100,13 +99,12 @@ router.post('/profs', profController.createProf);
  *                 type: string
  *               prenom:
  *                 type: string
- *               email:
- *                 type: string
- *               password:
- *                 type: string
  *               date_naissance:
  *                 type: string
- *               date_embauche:
+ *                 example: '1979-09-05T23:09:19.790Z'
+ *               adresse:
+ *                 type: string
+ *               sexe:
  *                 type: string
  *     responses:
  *       200:

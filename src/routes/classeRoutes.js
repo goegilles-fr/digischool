@@ -62,6 +62,8 @@ router.get('/classes/:id', classeController.getClasseById);
  *             properties:
  *               nom:
  *                 type: string
+ *               profId:
+ *                 type: integer
  *     responses:
  *       200:
  *         description: The created class
@@ -93,6 +95,8 @@ router.post('/classes', classeController.createClasse);
  *             properties:
  *               nom:
  *                 type: string
+ *               profId:
+ *                 type: integer
  *     responses:
  *       200:
  *         description: The updated class

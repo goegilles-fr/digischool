@@ -1,5 +1,5 @@
-const noteController = require('../controllers/noteController');
-const express = require('express');
+const noteController = require("../controllers/noteController");
+const express = require("express");
 const router = express.Router();
 
 /**
@@ -19,7 +19,7 @@ const router = express.Router();
  *               items:
  *                 type: object
  */
-router.get('/notes', noteController.getAllNotes);
+router.get("/notes", noteController.getAllNotes);
 
 /**
  * @openapi
@@ -36,7 +36,7 @@ router.get('/notes', noteController.getAllNotes);
  *         schema:
  *           type: integer
  */
-router.get('/notes/:id', noteController.getNoteById);
+router.get("/notes/:id", noteController.getNoteById);
 
 /**
  * @openapi
@@ -52,10 +52,34 @@ router.get('/notes/:id', noteController.getNoteById);
  *           schema:
  *             type: object
  *             properties:
- *               note:
+ *              date_saisie:
  *                 type: string
+ *                 example: '1979-09-05T23:09:19.790Z'
+ *              ideleve:
+ *                 type: integer
+ *              idclasse:
+ *                 type: integer
+ *              idmatiere:
+ *                 type: integer
+ *              idprof:
+ *                 type: integer
+ *              idtrimestre:
+ *                 type: integer
+ *              note:
+ *                 type: integer
+ *              avis:
+ *                 type: string
+ *              avancement:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: The created note
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
-router.post('/notes', noteController.createNote);
+router.post("/notes", noteController.createNote);
 
 /**
  * @openapi
@@ -70,9 +94,36 @@ router.post('/notes', noteController.createNote);
  *         description: ID of the note to update
  *         required: true
  *         schema:
- *           type: integer
+ *           type: object
+ *           properties:
+ *             date_saisie:
+ *                type: string
+ *                example: '1979-09-05T23:09:19.790Z'
+ *             ideleve:
+ *                type: integer
+ *             idclasse:
+ *                type: integer
+ *             idmatiere:
+ *                type: integer
+ *             idprof:
+ *                type: integer
+ *             idtrimestre:
+ *                type: integer
+ *             note:
+ *                type: integer
+ *             avis:
+ *                type: string
+ *             avancement:
+ *                type: string
+ *     responses:
+ *       200:
+ *         description: The updated note
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
-router.put('/notes/:id', noteController.updateNote);
+router.put("/notes/:id", noteController.updateNote);
 
 /**
  * @openapi
@@ -89,6 +140,6 @@ router.put('/notes/:id', noteController.updateNote);
  *         schema:
  *           type: integer
  */
-router.delete('/notes/:id', noteController.deleteNote);
+router.delete("/notes/:id", noteController.deleteNote);
 
 module.exports = router;
