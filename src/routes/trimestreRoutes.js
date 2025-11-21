@@ -34,7 +34,14 @@ router.get('/trimestres', trimestreController.getAllTrimestres);
  *         description: ID of the trimestre to retrieve
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The retrieved trimestre
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.get('/trimestres/:id', trimestreController.getTrimestreById);
 
@@ -63,6 +70,7 @@ router.get('/trimestres/:id', trimestreController.getTrimestreById);
  *         content:
  *           application/json:
  *             schema:
+ *               type: object
  */
 router.post('/trimestres', trimestreController.createTrimestre);
 
@@ -92,6 +100,7 @@ router.post('/trimestres', trimestreController.createTrimestre);
  *         content:
  *           application/json:
  *             schema:
+ *               type: object
  */
 router.put('/trimestres/:id', trimestreController.updateTrimestre);
 
@@ -108,7 +117,14 @@ router.put('/trimestres/:id', trimestreController.updateTrimestre);
  *         description: ID of the trimestre to delete
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The deleted trimestre
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.delete('/trimestres/:id', trimestreController.deleteTrimestre);
 

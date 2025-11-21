@@ -34,7 +34,14 @@ router.get("/notes", noteController.getAllNotes);
  *         description: ID of the note to retrieve
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The note with the specified ID
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.get("/notes/:id", noteController.getNoteById);
 
@@ -56,15 +63,15 @@ router.get("/notes/:id", noteController.getNoteById);
  *                 type: string
  *                 example: '1979-09-05T23:09:19.790Z'
  *              ideleve:
- *                 type: integer
+ *                 type: string
  *              idclasse:
- *                 type: integer
+ *                 type: string
  *              idmatiere:
- *                 type: integer
+ *                 type: string
  *              idprof:
- *                 type: integer
+ *                 type: string
  *              idtrimestre:
- *                 type: integer
+ *                 type: string
  *              note:
  *                 type: integer
  *              avis:
@@ -100,15 +107,15 @@ router.post("/notes", noteController.createNote);
  *                type: string
  *                example: '1979-09-05T23:09:19.790Z'
  *             ideleve:
- *                type: integer
+ *                type: string
  *             idclasse:
- *                type: integer
+ *                type: string
  *             idmatiere:
- *                type: integer
+ *                type: string
  *             idprof:
- *                type: integer
+ *                type: string
  *             idtrimestre:
- *                type: integer
+ *                type: string
  *             note:
  *                type: integer
  *             avis:
@@ -138,7 +145,14 @@ router.put("/notes/:id", noteController.updateNote);
  *         description: ID of the note to delete
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The deleted note
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.delete("/notes/:id", noteController.deleteNote);
 

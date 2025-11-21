@@ -34,7 +34,14 @@ router.get('/matieres', matiereController.getAllMatieres);
  *         description: ID of the matiere to get
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The matiere
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.get('/matieres/:id', matiereController.getMatiereById);
 
@@ -54,6 +61,13 @@ router.get('/matieres/:id', matiereController.getMatiereById);
  *             properties:
  *               nom:
  *                 type: string
+ *     responses:
+ *       200:
+ *         description: The created matiere
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.post('/matieres', matiereController.createMatiere);
 
@@ -70,7 +84,7 @@ router.post('/matieres', matiereController.createMatiere);
  *         description: ID of the matiere to update
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *     requestBody:
  *       required: true
  *       content:
@@ -80,6 +94,13 @@ router.post('/matieres', matiereController.createMatiere);
  *             properties:
  *               nom:
  *                 type: string
+ *     responses:
+ *       200:
+ *         description: The updated matiere
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.put('/matieres/:id', matiereController.updateMatiere);
 
@@ -96,7 +117,14 @@ router.put('/matieres/:id', matiereController.updateMatiere);
  *         description: ID of the matiere to delete
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The deleted matiere
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.delete('/matieres/:id', matiereController.deleteMatiere);
 

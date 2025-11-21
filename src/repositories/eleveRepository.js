@@ -1,32 +1,53 @@
-let eleves = [];
+const { PrismaClient } = require("../generated/prisma");
+const prisma = new PrismaClient();
 
 exports.getAllEleves = async () => {
-    return eleves;
+  return await prisma.eleve.findMany();
 };
 
 exports.getEleveById = async (id) => {
-    return eleves.find(eleve => eleve.id === id);
+  return await prisma.eleve.findUnique({
+    where: { id: id },
+  });
 };
 
 exports.createEleve = async (eleve) => {
-    eleves.push(eleve);
-    return eleve;
+  return await prisma.eleve.create({
+    data: {
+      nom: eleve.nom,
+      prenom: eleve.prenom,
+      classeId: eleve.classeId,
+      date_naissance: eleve.date_naissance,
+      adresse: eleve.adresse,
+      sexe: eleve.sexe,
+    },
+  });
 };
 
 exports.updateEleve = async (id, eleve) => {
-    const index = eleves.findIndex(eleve => eleve.id === id);
-    if (index !== -1) {
-        eleves[index] = eleve;
-        return eleve;
-    }
-    return null;
+  return await prisma.eleve.update({
+    where: { id: id },
+    data: {
+      nom: eleve.nom,
+      prenom: eleve.prenom,
+      classeId: eleve.classeId,
+      date_naissance: eleve.date_naissance,
+      adresse: eleve.adresse,
+      sexe: eleve.sexe,
+    },
+  });
 };
 
 exports.deleteEleve = async (id) => {
-    const index = eleves.findIndex(eleve => eleve.id === id);
-    if (index !== -1) {
-        eleves.splice(index, 1);
-        return true;
+  try {
+    await prisma.eleve.delete({
+      where: { id: id },
+    });
+    return true;
+  } catch (error) {
+    if (error.code === "P2025") {
+      return false;
     }
-    return false;
+    throw error;
+  }
 };

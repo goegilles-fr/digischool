@@ -1,7 +1,7 @@
 const matiereService = require('../services/matiereService.js')
 
 exports.getMatiereById = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const matiere = await matiereService.getMatiereById(id);
     res.status(200).json(matiere);
 }
@@ -18,14 +18,14 @@ exports.createMatiere = async (req, res) => {
 }
 
 exports.updateMatiere = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const matiere = req.body;
     const updatedMatiere = await matiereService.updateMatiere(id, matiere);
     res.status(200).json(updatedMatiere);
 }
 
 exports.deleteMatiere = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const deletedMatiere = await matiereService.deleteMatiere(id);
     res.status(200).json(deletedMatiere);
 }

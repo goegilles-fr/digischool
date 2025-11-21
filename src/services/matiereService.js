@@ -11,14 +11,12 @@ exports.getMatiereById = async (id) => {
 };
 
 exports.createMatiere = async (datas) => {
-    let matiere = new Matiere(datas.id, datas.nom);
-    const createdMatiere = await matiereRepository.createMatiere(matiere);
+    const createdMatiere = await matiereRepository.createMatiere(datas);
     return createdMatiere;
 };
 
 exports.updateMatiere = async (id, datas) => {
-    let matiere = new Matiere(datas.id, datas.nom);
-    const updatedMatiere = await matiereRepository.updateMatiere(id, matiere);
+    const updatedMatiere = await matiereRepository.updateMatiere(id, datas);
     return updatedMatiere;
 };
 
