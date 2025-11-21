@@ -1,24 +1,22 @@
 const profRepository = require('../repositories/profRepository');
 
-exports.getAllProf = () => {
-    return profRepository.getAllProf();
+exports.getAllProf = async () => {
+    return await profRepository.getAllProf();
 }
 
-exports.getProfById = (id) => {
-    return profRepository.getProfById(Number(id));
+exports.getProfById = async (id) => {
+    return await profRepository.getProfById(id);
 }
 
-exports.createProf = (prof) => {
-    if(!prof.nom || !prof.prenom) return null;
-    return profRepository.createProf(prof);
+exports.createProf = async (prof) => {
+    if (!prof.nom || !prof.prenom) return null;
+    return await profRepository.createProf(prof);
 }
 
-exports.updateProf = (id, prof) => {
-    const numericId = Number(id);
-    if(Number.isNaN(numericId)) return null;
-    return profRepository.updateProf({ ...prof, id:numericId });
+exports.updateProf = async (id, prof) => {
+    return await profRepository.updateProf({ ...prof, id: id });
 }
 
-exports.deleteProf = (id) => {
-    return profRepository.deleteProf(Number(id));
+exports.deleteProf = async (id) => {
+    return await profRepository.deleteProf(id);
 }

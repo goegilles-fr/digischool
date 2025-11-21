@@ -13,7 +13,7 @@ exports.getProfById = async (id) => {
 
 exports.createProf = async (prof) => {
     return await prisma.prof.create({
-        data : {
+        data: {
             nom: prof.nom,
             prenom: prof.prenom,
             dateNaissance: prof.dateNaissance,
@@ -43,7 +43,7 @@ exports.deleteProf = async (id) => {
         });
         return true;
     } catch (error) {
-        if(error.code === 'P2025') {
+        if (error.code === 'P2025') {
             return false;
         }
         throw error;
