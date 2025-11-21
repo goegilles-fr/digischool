@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "start": "node src/index.js"
   },
   "keywords": [],
@@ -20,6 +22,8 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "prisma": "6.19"
+    "jest": "^30.2.0",
+    "prisma": "6.19",
+    "supertest": "^7.1.4"
   }
 }
