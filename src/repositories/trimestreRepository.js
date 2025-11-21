@@ -1,32 +1,31 @@
-let trimestres = [];
+const { PrismaClient } = require('../generated/prisma');
+const prisma = new PrismaClient();
 
 exports.getAllTrimestres = async () => {
-    return trimestres;
+    return await prisma.trimestre.findMany();
 };
 
 exports.getTrimestreById = async (id) => {
-    return trimestres.find(trimestre => trimestre.idtrimestre === id);
+    return await prisma.trimestre.findUnique({
+        where: { id: id }
+    });
 };
 
 exports.createTrimestre = async (trimestre) => {
-    trimestres.push(trimestre);
-    return trimestre;
+    return await prisma.trimestre.create({
+        data: trimestre
+    });
 };
 
 exports.updateTrimestre = async (id, trimestre) => {
-    const index = trimestres.findIndex(trimestre => trimestre.idtrimestre === id);
-    if (index !== -1) {
-        trimestres[index] = trimestre;
-        return trimestre;
-    }
-    return null;
+    return await prisma.trimestre.update({
+        where: { id: id },
+        data: trimestre
+    });
 };
 
 exports.deleteTrimestre = async (id) => {
-    const index = trimestres.findIndex(trimestre => trimestre.idtrimestre === id);
-    if (index !== -1) {
-        trimestres.splice(index, 1);
-        return true;
-    }
-    return false;
+    return await prisma.trimestre.delete({
+        where: { id: id }
+    });
 };
