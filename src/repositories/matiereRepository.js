@@ -1,32 +1,43 @@
-let matieres = [];
+const { PrismaClient } = require("../generated/prisma");
+const prisma = new PrismaClient();
 
 exports.getAllMatieres = async () => {
-    return matieres;
+  return await prisma.matiere.findMany();
 };
 
 exports.getMatiereById = async (id) => {
-    return matieres.find(matiere => matiere.id === id);
+  return await prisma.matiere.findUnique({
+    where: { id: id },
+  });
 };
 
 exports.createMatiere = async (matiere) => {
-    matieres.push(matiere);
-    return matiere;
+  return await prisma.matiere.create({
+    data: {
+      nom: matiere.nom,
+    },
+  });
 };
 
 exports.updateMatiere = async (id, matiere) => {
-    const index = matieres.findIndex(matiere => matiere.id === id);
-    if (index !== -1) {
-        matieres[index] = matiere;
-        return matiere;
-    }
-    return null;
+  return await prisma.matiere.update({
+    where: { id: id },
+    data: {
+      nom: matiere.nom,
+    },
+  });
 };
 
 exports.deleteMatiere = async (id) => {
-    const index = matieres.findIndex(matiere => matiere.id === id);
-    if (index !== -1) {
-        matieres.splice(index, 1);
-        return true;
+  try {
+    await prisma.matiere.delete({
+      where: { id: id },
+    });
+    return true;
+  } catch (error) {
+    if (error.code === "P2025") {
+      return false;
     }
-    return false;
+    throw error;
+  }
 };

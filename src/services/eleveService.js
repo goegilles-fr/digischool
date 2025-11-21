@@ -11,14 +11,12 @@ exports.getEleveById = async (id) => {
 };
 
 exports.createEleve = async (datas) => {
-    let eleve = new Eleve(datas.id, datas.nom, datas.prenom, datas.classe, datas.date_naissance, datas.adresse, datas.sexe);
-    const createdEleve = await eleveRepository.createEleve(eleve);
+    const createdEleve = await eleveRepository.createEleve(datas);
     return createdEleve;
 };
 
 exports.updateEleve = async (id, datas) => {
-    let eleve = new Eleve(datas.id, datas.nom, datas.prenom, datas.classe, datas.date_naissance, datas.adresse, datas.sexe);
-    const updatedEleve = await eleveRepository.updateEleve(id, eleve);
+    const updatedEleve = await eleveRepository.updateEleve(id, datas);
     return updatedEleve;
 };
 

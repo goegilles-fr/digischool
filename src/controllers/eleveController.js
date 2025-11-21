@@ -6,7 +6,7 @@ exports.getAllEleves = async (req, res) => {
 }
 
 exports.getEleveById = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const eleve = await eleveService.getEleveById(id);
     res.status(200).json(eleve);
 }
@@ -18,14 +18,14 @@ exports.createEleve = async (req, res) => {
 }
 
 exports.updateEleve = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const eleve = req.body;
     const updatedEleve = await eleveService.updateEleve(id, eleve);
     res.status(200).json(updatedEleve);
 }
 
 exports.deleteEleve = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const deletedEleve = await eleveService.deleteEleve(id);
     res.status(200).json(deletedEleve);
 }

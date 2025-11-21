@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const profController = require('../controllers/profController');
+const profController = require("../controllers/profController");
 
 /**
  * @openapi
@@ -20,7 +20,7 @@ const profController = require('../controllers/profController');
  *               items:
  *                 type: object
  */
-router.get('/profs', profController.getAllProf);
+router.get("/profs", profController.getAllProf);
 
 /**
  * @openapi
@@ -29,6 +29,13 @@ router.get('/profs', profController.getAllProf);
  *     tags:
  *       - Professors
  *     summary: Get a professor by ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: ID of the note to retrieve
+ *         required: true
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: A professor
@@ -37,7 +44,7 @@ router.get('/profs', profController.getAllProf);
  *             schema:
  *               type: object
  */
-router.get('/profs/:id', profController.getProfById);
+router.get("/profs/:id", profController.getProfById);
 
 /**
  * @openapi
@@ -72,7 +79,7 @@ router.get('/profs/:id', profController.getProfById);
  *             schema:
  *               type: object
  */
-router.post('/profs', profController.createProf);
+router.post("/profs", profController.createProf);
 
 /**
  * @openapi
@@ -87,7 +94,7 @@ router.post('/profs', profController.createProf);
  *         description: ID of the professor to update
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *     requestBody:
  *       required: true
  *       content:
@@ -114,7 +121,7 @@ router.post('/profs', profController.createProf);
  *             schema:
  *               type: object
  */
-router.put('/profs/:id', profController.updateProf);
+router.put("/profs/:id", profController.updateProf);
 
 /**
  * @openapi
@@ -129,11 +136,15 @@ router.put('/profs/:id', profController.updateProf);
  *         description: ID of the professor to delete
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: The deleted professor
-*/
-router.delete('/profs/:id', profController.deleteProf);
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ */
+router.delete("/profs/:id", profController.deleteProf);
 
 module.exports = router;

@@ -35,7 +35,7 @@ router.get('/classes', classeController.getAllClasse);
  *         description: ID of the class to get
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: The class
@@ -63,12 +63,14 @@ router.get('/classes/:id', classeController.getClasseById);
  *               nom:
  *                 type: string
  *               profId:
- *                 type: integer
+ *                 type: string
  *     responses:
  *       200:
  *         description: The created class
  *         content:
  *           application/json:
+ *             schema:
+ *               type: object
  */
 router.post('/classes', classeController.createClasse);
 
@@ -85,7 +87,7 @@ router.post('/classes', classeController.createClasse);
  *         description: ID of the class to update
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *     requestBody:
  *       required: true
  *       content:
@@ -96,10 +98,14 @@ router.post('/classes', classeController.createClasse);
  *               nom:
  *                 type: string
  *               profId:
- *                 type: integer
+ *                 type: string
  *     responses:
  *       200:
  *         description: The updated class
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.put('/classes/:id', classeController.updateClasse);
 
@@ -116,7 +122,14 @@ router.put('/classes/:id', classeController.updateClasse);
  *         description: ID of the class to delete
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The deleted class
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.delete('/classes/:id', classeController.deleteClasse);
 

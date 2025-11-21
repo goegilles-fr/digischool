@@ -34,7 +34,7 @@ router.get("/eleves", eleveController.getAllEleves);
  *         description: ID of the eleve to retrieve
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: The eleve
@@ -63,7 +63,7 @@ router.get("/eleves/:id", eleveController.getEleveById);
  *                 type: string
  *               prenom:
  *                 type: string
- *               classe:
+ *               classeId:
  *                 type: string
  *               date_naissance:
  *                 type: string
@@ -95,7 +95,7 @@ router.post("/eleves", eleveController.createEleve);
  *         description: ID of the eleve to update
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *     requestBody:
  *       required: true
  *       content:
@@ -107,7 +107,7 @@ router.post("/eleves", eleveController.createEleve);
  *                 type: string
  *               prenom:
  *                 type: string
- *               classe:
+ *               classeId:
  *                 type: string
  *               date_naissance:
  *                 type: string
@@ -121,6 +121,8 @@ router.post("/eleves", eleveController.createEleve);
  *         description: The updated eleve
  *         content:
  *           application/json:
+ *             schema:
+ *               type: object
  */
 router.put("/eleves/:id", eleveController.updateEleve);
 
@@ -137,7 +139,14 @@ router.put("/eleves/:id", eleveController.updateEleve);
  *         description: ID of the eleve to delete
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The deleted eleve
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
  */
 router.delete("/eleves/:id", eleveController.deleteEleve);
 
