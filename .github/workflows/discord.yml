@@ -138,6 +138,6 @@ jobs:
           echo "$PAYLOAD" | jq empty && echo "✅ JSON is valid" || echo "❌ JSON is invalid"
           
           # Send to Discord
-          #curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+         # curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
           #  -H "Content-Type: application/json" \
           #  -d "$PAYLOAD"

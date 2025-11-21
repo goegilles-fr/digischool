@@ -2,7 +2,7 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: ['docker']
+    branches: ['main']
   workflow_dispatch:
 
 env:
@@ -55,3 +55,11 @@ jobs:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
+      - name: Send Discord notification
+        if: success()
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          
+         # curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+          #  -H "Content-Type: application/json" \
+         #   -d "{\"content\": \"🐳 **$REPO_NAME** - Docker image built and pushed to GitHub Container Registry successfully!\"}"

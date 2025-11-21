@@ -28,7 +28,24 @@ Create a `.env` file in the root directory:
 ```env
 DATABASE_URL="mongodb://username:password@host:27017/digischools?authSource=admin"
 ```
+## 🐳 Docker Deployment
 
+### Pull from GitHub Container Registry
+
+The Docker image is automatically built and published to GitHub Container Registry on every push to `main`.
+```bash
+# Pull the latest image
+docker pull ghcr.io/goegilles-fr/digischool:latest
+```
+
+### Run the container
+```bash
+docker run -d \
+  --name digischool-app \
+  -p 8080:8080 \
+  -e DATABASE_URL="mongodb://username:password@host:port/database?authSource=admin&replicaSet=rs0&directConnection=true" \
+  ghcr.io/goegilles-fr/digischool:latest
+```
 
 ## 🛠️ Tech Stack
 
