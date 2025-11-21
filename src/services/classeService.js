@@ -1,41 +1,28 @@
 const classeRepository = require('../repositories/classeRepository');
 
-exports.getAllClasse = () => {
-    return classeRepository.getAllClasse();
+exports.getAllClasse = async () => {
+    return await classeRepository.getAllClasse();
 }
 
-exports.getClasseById = (id) => {
-    const numericId = Number(id);
-    if(Number.isNaN(numericId)) return null;
-
-    return classeRepository.getClasseById(numericId);
+exports.getClasseById = async (id) => {
+    return await classeRepository.getClasseById(id);
 }
 
-exports.createClasse = (classe) => {
-    if(!classe.nom || classe.profId === null || classe.profId === undefined) return null;
+exports.createClasse = async (classe) => {
+    if (!classe.nom || classe.profId === null || classe.profId === undefined) return null;
 
-    const numericProfId = Number(classe.profId);
-    if(Number.isNaN(numericProfId)) return null;
-
-    return classeRepository.createClasse({ ...classe, profId:numericProfId });
+    return await classeRepository.createClasse({ ...classe, profId: classe.profId });
 }
 
-exports.updateClasse = (id, classe) => {
-    const numericId = Number(id);
-    if(Number.isNaN(numericId)) return null;
-
-    const updatedPayload = { ...classe, id:numericId };
-    if(classe.profId !== undefined) {
-        const numericProfId = Number(classe.profId);
-        if(Number.isNaN(numericProfId)) return null;
-        updatedPayload.profId = numericProfId;
+exports.updateClasse = async (id, classe) => {
+    const updatedPayload = { ...classe, id: id };
+    if (classe.profId !== undefined) {
+        updatedPayload.profId = classe.profId;
     }
 
-    return classeRepository.updateClasse(updatedPayload);
+    return await classeRepository.updateClasse(updatedPayload);
 }
 
-exports.deleteClasse = (id) => {
-    const numericId = Number(id);
-    if(Number.isNaN(numericId)) return false;
-    return classeRepository.deleteClasse(numericId);
+exports.deleteClasse = async (id) => {
+    return await classeRepository.deleteClasse(id);
 }
