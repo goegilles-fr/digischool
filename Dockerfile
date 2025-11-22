@@ -23,4 +23,4 @@ EXPOSE 8080
 # Push schema and start
 CMD ["sh", "-c", "npx prisma db push && npm start"]
 # .env must include DATABASE_URL
-# docker run -d --name digischool-app -p 8080:8080 -e DATABASE_URL="mongodb://admin:74hjyg398gthfD3@goegilles.fr:27017/digischools?authSource=admin&replicaSet=rs0&directConnection=true"  digischool-app
+# docker run -d --name digischool-app -p 8080:8080 -e DATABASE_URL="mongodb://admin:pass@example.com:27017/digischools?authSource=admin&replicaSet=rs0&directConnection=true"  digischool-app
