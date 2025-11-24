@@ -1,11 +1,14 @@
 var express = require("express");
+const dotenv = require('dotenv');
 const port = 8080;
+dotenv.config();
 var app = express();
 
 
 // Security
 const helmet = require('helmet');
-app.use(helmet());
+const helmetOptions = require('./configs/helmet.js');
+app.use(helmet(helmetOptions));
 
 // CORS
 const corsWhitelist = ['http://localhost:4200', 'https://digischool.goegilles.fr/'];
@@ -17,12 +20,23 @@ app.use(function (req, res, next) {
 })
 
 // Rate limiter
-const limiter = require('./rate-limiter');
+const limiter = require('./configs/rate-limiter.js');
 app.use(limiter);
 
 // swagger
 const swaggerUi = require('swagger-ui-express');
-const swaggerOptions = require('./swagger.js');
+const swaggerOptions = require('./configs/swagger.js');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
+
+//Middleware
+app.use(express.json());
+
+// JWT
+const authRoutes = require('./routes/authRoutes');
+app.use('/api', authRoutes);
+
+const jwtConfig = require('./configs/jwt.js');
+app.use(jwtConfig);
 
 // routes
 const eleveRoutes = require('./routes/eleveRoutes');
@@ -32,10 +46,7 @@ const classeRoutes = require('./routes/classeRoutes');
 const noteRoutes = require('./routes/noteRoutes');
 const trimestreRoutes = require('./routes/trimestreRoutes');
 
-//Middleware
-app.use(express.json())
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
 app.use('/api', eleveRoutes);
 app.use('/api', matiereRoutes);
 app.use('/api', profRoutes);
