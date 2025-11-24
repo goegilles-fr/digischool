@@ -2,6 +2,24 @@ var express = require("express");
 const port = 8080;
 var app = express();
 
+
+// Security
+const helmet = require('helmet');
+app.use(helmet());
+
+// CORS
+const corsWhitelist = ['http://localhost:4200', 'https://digischool.goegilles.fr/'];
+app.use(function (req, res, next) {
+  if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  }
+  next();
+})
+
+// Rate limiter
+const limiter = require('./rate-limiter');
+app.use(limiter);
+
 // swagger
 const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = require('./swagger.js');
@@ -40,5 +58,5 @@ app.use(function(req, res) {
 });
 
 app.listen(port, () => {
-    console.log(`Serveur à l'écoute sur le port ${port} !`)
+    console.log(`Serveur à l'écoute sur le port ${port} ! http://localhost:${port}`);
 });
