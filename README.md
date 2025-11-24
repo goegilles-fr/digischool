@@ -1,44 +1,83 @@
-# DigiSchool - School Management System
+# DigiSchool - Système de Gestion Scolaire
+<img width="373" height="248" alt="image" src="https://github.com/user-attachments/assets/2b76d39c-882e-4ce3-9c97-5397ca5da935" />
 
 A Node.js/Express REST API for managing schools, students, teachers, classes, subjects, and grades.
 
-## 🚀 Quick Start
+## 📋 Description du Projet
+
+DigiSchool est une API REST complète permettant de gérer un établissement scolaire. Le système permet de:
+
+- **Gérer les élèves** (élèves) - Informations personnelles, classe, date de naissance, adresse
+- **Gérer les professeurs** (profs) - Informations personnelles et assignation aux classes
+- **Gérer les classes** - Organisation des classes et attribution des professeurs principaux
+- **Gérer les matières** - Définition des matières enseignées
+- **Gérer les notes** - Saisie et consultation des notes par élève, matière, trimestre
+- **Gérer les trimestres** - Périodes d'évaluation scolaire
+- **Authentification sécurisée** - Système d'inscription et connexion avec JWT
+
+
+# 🚀 Instructions pour Lancer l'API
+
+### Prérequis
+
+- **Node.js** version 22 ou supérieure
+- **MongoDB** accessible (local ou distant)
+
+### Installation et Configuration
+
+
+#### 1. Installer les dépendances
 
 ```bash
-# 1. Install dependencies
 npm install
-
-# 2. Generate Prisma Client
-npx prisma generate
-
-# 3. Configure environment variables
-# Copy .env.example to .env and update with your MongoDB connection string
-
-# 5. Start the server
-npm start
-
-# 6. To access the swagger
-http://localhost:8080/api-docs/
 ```
 
-## ⚙️ Environment Variables
+#### 2. Configurer les variables d'environnement
 
-Create a `.env` file in the root directory:
+Créer un fichier `.env` à la racine du projet:
 
 ```env
-DATABASE_URL="mongodb://username:password@host:27017/digischools?authSource=admin"
+DATABASE_URL="mongodb://user:pass@host:27017/digischools?authSource=admin&replicaSet=rs0&directConnection=true"
+JWT_SECRET="votre_secret_jwt_tres_securise_minimum_32_caracteres"
 ```
-## 🐳 Docker Deployment
 
-### Pull from GitHub Container Registry
+#### 3. Générer le client Prisma
 
-The Docker image is automatically built and published to GitHub Container Registry on every push to `main`.
 ```bash
-# Pull the latest image
+npx prisma generate
+```
+
+#### 4. Pousser le schéma vers MongoDB
+
+```bash
+npx prisma db push
+```
+
+#### 5. Démarrer le serveur
+
+```bash
+npm start
+```
+Le serveur démarre sur `http://localhost:8080`
+
+#### 6. Vérifier le fonctionnement
+
+Accéder à la documentation Swagger:
+```
+http://localhost:8080/api-docs
+```
+
+
+## 🐳 Déploiement Docker
+
+### Téléchargement depuis le Registre de Conteneurs GitHub
+
+L'image Docker est automatiquement construite et publiée sur le Registre de Conteneurs GitHub à chaque commit/push
+```bash
 docker pull ghcr.io/goegilles-fr/digischool:latest
 ```
 
-### Run the container
+### Exécuter le conteneur
 ```bash
 docker run -d \
   --name digischool-app \
@@ -46,32 +85,58 @@ docker run -d \
   -e DATABASE_URL="mongodb://username:password@host:port/database?authSource=admin&replicaSet=rs0&directConnection=true" \
   ghcr.io/goegilles-fr/digischool:latest
 ```
+## 🛠️ Technologies et Dépendances
 
-## 🛠️ Tech Stack
+### Backend Core
+- **Node.js**  - Runtime JavaScript
+- **Express.js**  - Framework web minimaliste et performant
+- **MongoDB**  - Base de données NoSQL orientée documents
 
-### Backend
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web framework
-- **Prisma ORM v6.19** - Database ORM with MongoDB support
-- **MongoDB** - NoSQL database
+### ORM et Base de Données
+- **Prisma**  - ORM moderne pour MongoDB
+  - `@prisma/client` - Client Prisma généré
+  - `prisma` - CLI Prisma pour les migrations et génération
+
+### Sécurité
+- **helmet** - Sécurisation des headers HTTP
+- **express-rate-limit**  - Limitation du nombre de requêtes (protection DDoS)
+- **jsonwebtoken**  - Génération et vérification de tokens JWT
+- **bcryptjs**  - Hashage sécurisé des mots de passe
+- **cookie-parser**  - Parsing des cookies pour JWT
+- **dotenv**  - Gestion des variables d'environnement
 
 
-## 📁 Project Structure
+### Utilisation avec Authentification
+
+1. Créer un compte via `POST /api/auth/register`
+2. Se connecter via `POST /api/auth/login` pour obtenir un token JWT
+3. Cliquer sur le bouton **"Authorize"** en haut de la page Swagger
+4. Entrer le token au format: `Bearer votre_token_jwt`
+5. Tester les endpoints protégés
+
+
+#### Authentification JWT
+
+Les mots de passe sont hashés avec **bcryptjs** (10 rounds de salting) avant stockage.
+
+Les tokens JWT contiennent:
+- ID utilisateur
+- Email
+- Date d'expiration (configurable)
+
+**Middleware JWT:** `/src/configs/jwt.js`
+
+Protège automatiquement tous les endpoints sauf `/api/auth/*`.
+
+### Endpoints Publics (Sans Authentification)
+
+- `POST /api/auth/register` - Inscription
+- `POST /api/auth/login` - Connexion
+
+### Endpoints Protégés (Authentification Requise)
+
+Tous les autres endpoints requièrent un token JWT valide dans le header:
 
 ```
-digischool/
-├── src/
-│   ├── controllers/       # Request handlers
-│   ├── services/          # Business logic
-│   ├── repositories/      # Database operations (Prisma)
-│   ├── routes/            # API routes
-│   ├── generated/         # Prisma generated client (auto-generated)
-│   └── index.js           # Application entry point
-├── prisma/
-│   └── schema.prisma      # Database schema definition
-├── .env                   # Environment variables (not in git)
-├── .gitignore
-├── package.json
-└── README.md
+Authorization: Bearer <votre_token_jwt>
 ```
-
