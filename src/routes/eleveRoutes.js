@@ -65,7 +65,7 @@ router.get("/eleves/:id", eleveController.getEleveById);
  *                 type: string
  *               classeId:
  *                 type: string
- *               date_naissance:
+ *               dateNaissance:
  *                 type: string
  *                 example: '1979-09-05T23:09:19.790Z'
  *               adresse:
@@ -109,7 +109,7 @@ router.post("/eleves", eleveController.createEleve);
  *                 type: string
  *               classeId:
  *                 type: string
- *               date_naissance:
+ *               dateNaissance:
  *                 type: string
  *                 example: '1979-09-05T23:09:19.790Z'
  *               adresse:
