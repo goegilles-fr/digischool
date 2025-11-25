@@ -16,7 +16,7 @@ exports.createProf = async (prof) => {
         data: {
             nom: prof.nom,
             prenom: prof.prenom,
-            dateNaissance: prof.dateNaissance,
+            dateNaissance: new Date(prof.dateNaissance),
             adresse: prof.adresse,
             sexe: prof.sexe,
         },
@@ -29,7 +29,7 @@ exports.updateProf = async (prof) => {
         data: {
             nom: prof.nom,
             prenom: prof.prenom,
-            dateNaissance: prof.dateNaissance,
+            dateNaissance: new Date(prof.dateNaissance),
             adresse: prof.adresse,
             sexe: prof.sexe,
         },
