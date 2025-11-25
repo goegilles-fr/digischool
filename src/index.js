@@ -11,13 +11,41 @@ const helmetOptions = require('./configs/helmet.js');
 app.use(helmet(helmetOptions));
 
 // CORS
-const corsWhitelist = ['http://localhost:4200', 'https://digischool.goegilles.fr/'];
-app.use(function (req, res, next) {
-  if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+const corsWhitelist = [
+  'http://localhost:4200', 
+  'https://digischool.goegilles.fr'
+];
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  if (origin && corsWhitelist.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin'); // bonus, pour être propre côté cache
+
+    // Méthodes autorisées
+    res.setHeader(
+      'Access-Control-Allow-Methods',
+      'GET,POST,PUT,PATCH,DELETE,OPTIONS'
+    );
+
+    // Headers autorisés (critique : ajouter Content-Type)
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Content-Type, Authorization'
+    );
+
+    // Pour envoyer des cookies ou des headers auth avec fetch
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
   }
+
+  // Gestion du préflight
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+
   next();
-})
+});
 
 // Rate limiter
 const limiter = require('./configs/rate-limiter.js');
