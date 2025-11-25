@@ -51,7 +51,7 @@ model Eleve {
   nom            String
   prenom         String
   classeId       String   @db.ObjectId
-  date_naissance DateTime
+  dateNaissance  DateTime
   adresse        String
   sexe           String
   
