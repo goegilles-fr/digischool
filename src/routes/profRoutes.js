@@ -64,7 +64,7 @@ router.get("/profs/:id", profController.getProfById);
  *                 type: string
  *               prenom:
  *                 type: string
- *               date_naissance:
+ *               dateNaissance:
  *                 type: string
  *                 example: '1979-09-05T23:09:19.790Z'
  *               adresse:
@@ -106,7 +106,7 @@ router.post("/profs", profController.createProf);
  *                 type: string
  *               prenom:
  *                 type: string
- *               date_naissance:
+ *               dateNaissance:
  *                 type: string
  *                 example: '1979-09-05T23:09:19.790Z'
  *               adresse:
