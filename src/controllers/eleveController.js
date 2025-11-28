@@ -5,6 +5,17 @@ exports.getAllEleves = async (req, res) => {
     res.status(200).json(eleves);
 }
 
+exports.getAllElevesByClasse = async (req, res) => {
+    const eleves = await eleveService.getAllElevesByClasse();
+    res.status(200).json(eleves);
+}
+
+exports.getAllElevesOfClasse = async (req, res) => {
+    const id = req.params.id;
+    const eleves = await eleveService.getAllElevesOfClasse(id);
+    res.status(200).json(eleves);
+}
+
 exports.getEleveById = async (req, res) => {
     const id = req.params.id;
     const eleve = await eleveService.getEleveById(id);
