@@ -156,4 +156,89 @@ router.put("/notes/:id", noteController.updateNote);
  */
 router.delete("/notes/:id", noteController.deleteNote);
 
+
+
+/**
+ * @openapi
+ * /api/notes/eleve/{eleveId}:
+ *   get:
+ *     tags:
+ *       - Notes
+ *     summary: Récupérer les notes d'un élève
+ *     parameters:
+ *       - name: eleveId
+ *         in: path
+ *         description: ID de l'élève
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Liste des notes de l'élève
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
+router.get("/notes/eleve/:eleveId", noteController.getNotesByEleveId);
+
+/**
+ * @openapi
+ * /api/notes/prof/{profId}:
+ *   get:
+ *     tags:
+ *       - Notes
+ *     summary: Récupérer les élèves et leurs notes selon un professeur
+ *     parameters:
+ *       - name: profId
+ *         in: path
+ *         description: ID du professeur
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Liste des notes du professeur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
+router.get("/notes/prof/:profId", noteController.getNotesByProfId);
+
+/**
+ * @openapi
+ * /api/notes/classe/{classeId}/trimestre/{trimestreId}:
+ *   get:
+ *     tags:
+ *       - Notes
+ *     summary: Récupérer les notes par classe et trimestre
+ *     parameters:
+ *       - name: classeId
+ *         in: path
+ *         description: ID de la classe
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - name: trimestreId
+ *         in: path
+ *         description: ID du trimestre
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Liste des notes filtrées par classe et trimestre
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
+router.get("/notes/classe/:classeId/trimestre/:trimestreId", noteController.getNotesByClasseAndTrimestre);
 module.exports = router;
