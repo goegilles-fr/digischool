@@ -5,6 +5,16 @@ exports.getAllEleves = async () => {
     return eleves;
 };
 
+exports.getAllElevesByClasse = async () => {
+    const eleves = await eleveRepository.getAllElevesByClasse();
+    return eleves;
+};
+
+exports.getAllElevesOfClasse = async (classeId) => {
+    const eleves = await eleveRepository.getAllElevesOfClasse(classeId);
+    return eleves;
+};
+
 exports.getEleveById = async (id) => {
     const eleve = await eleveRepository.getEleveById(id);
     return eleve;

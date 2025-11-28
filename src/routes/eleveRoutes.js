@@ -23,6 +23,51 @@ router.get("/eleves", eleveController.getAllEleves);
 
 /**
  * @openapi
+ * /api/eleves/classe/{id}:
+ *   get:
+ *     tags:
+ *       - Eleves
+ *     summary: Get all eleves of a class
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: ID of the class
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: A list of eleves
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
+router.get("/eleves/classe/:id", eleveController.getAllElevesOfClasse);
+
+/**
+ * @openapi
+ * /api/eleves/classe:
+ *   get:
+ *     tags:
+ *       - Eleves
+ *     summary: Get all eleves ordered by classe
+ *     responses:
+ *       200:
+ *         description: A list of eleves
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
+router.get("/eleves/classe", eleveController.getAllElevesByClasse);
+
+/**
+ * @openapi
  * /api/eleves/{id}:
  *   get:
  *     tags:

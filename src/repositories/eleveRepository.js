@@ -5,6 +5,18 @@ exports.getAllEleves = async () => {
   return await prisma.eleve.findMany();
 };
 
+exports.getAllElevesByClasse = async () => {
+  return await prisma.eleve.findMany({
+    orderBy: { classeId: "asc" },
+  });
+};
+
+exports.getAllElevesOfClasse = async (classeId) => {
+  return await prisma.eleve.findMany({
+    where: { classeId: classeId },
+  });
+}
+
 exports.getEleveById = async (id) => {
   return await prisma.eleve.findUnique({
     where: { id: id },
