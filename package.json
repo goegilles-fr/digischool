@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "start": "node src/index.js",
-    "doc" : "jsdoc"
+    "doc": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
   "author": "",
