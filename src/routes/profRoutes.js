@@ -48,6 +48,30 @@ router.get("/profs/:id", profController.getProfById);
 
 /**
  * @openapi
+ * /api/profs/classe/{classeId}:
+ *   get:
+ *     tags:
+ *       - Professors
+ *     summary: Get a professor by classe ID
+ *     parameters:
+ *       - name: classeId
+ *         in: path
+ *         description: ID of the note to retrieve
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: A professor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ */
+router.get("/profs/classe/:classeId", profController.getProfByClasseId);
+
+/**
+ * @openapi
  * /api/profs:
  *   post:
  *     tags:
