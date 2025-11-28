@@ -1,5 +1,11 @@
 const rateLimit = require('express-rate-limit')
 
+/**
+ * Configure Express Rate Limiter middleware
+ * @module src/configs/rate-limiter
+ * @see {@link https://www.npmjs.com/package/express-rate-limit}
+ * @returns {Function} - Express Rate Limiter middleware
+ */
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
 	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).

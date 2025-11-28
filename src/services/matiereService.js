@@ -1,9 +1,4 @@
 const matiereRepository = require('../repositories/matiereRepository');
-/**
- * Matiere service
- * @module MatiereService
- */
-const matiereRepository = require('../repositories/matiereRepository');
 
 /**
  * Get all matieres
