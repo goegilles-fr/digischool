@@ -1,7 +1,7 @@
 /**
  * Service for managing notes.
  *
- * @type {typeof import("../repositories/noteRepository")}
+/** @type {Object} 
  */
 const noteRepository = require('../repositories/noteRepository');
 

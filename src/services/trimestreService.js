@@ -1,7 +1,7 @@
 /**
  * Service for managing trimestres.
  *
- * @type {typeof import("../repositories/trimestreRepository")}
+/** @type {Object} 
  */
 const trimestreRepository = require('../repositories/trimestreRepository');
 
