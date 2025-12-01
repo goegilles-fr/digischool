@@ -85,6 +85,24 @@ docker run -d \
   -e DATABASE_URL="mongodb://username:password@host:port/database?authSource=admin&replicaSet=rs0&directConnection=true" \
   ghcr.io/goegilles-fr/digischool:latest
 ```
+
+## 📖 Génération de la documentation
+
+Pour générer la documentation HTML du projet à partir des commentaires JSDoc :
+```bash
+npm run doc
+```
+
+La documentation sera générée dans le dossier `docs/` (ou le dossier configuré dans `jsdoc.json`).
+
+### 🧪 Couverture de tests
+
+Pour exécuter les tests et générer un rapport de couverture HTML :
+```bash
+npm run test:coverage
+```
+
+Le rapport de couverture sera disponible dans le dossier `coverage/`.
 ## 🛠️ Technologies et Dépendances
 
 ### Backend Core
