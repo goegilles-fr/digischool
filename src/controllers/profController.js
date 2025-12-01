@@ -15,8 +15,8 @@ const profService = require('../services/profService');
  * - 200 : Tableau de professeurs sérialisé en JSON.
  *
  * @async
- * @param {import('express').Request} request - Requête HTTP entrante.
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête HTTP entrante.
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.getAllProf = async (request, response) => {
@@ -32,8 +32,8 @@ exports.getAllProf = async (request, response) => {
  * - 404 : Aucun professeur correspondant à l'identifiant fourni.
  *
  * @async
- * @param {import('express').Request} request - Requête HTTP contenant l'identifiant du prof (`request.params.id`).
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête HTTP contenant l'identifiant du prof (`request.params.id`).
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.getProfById = async (request, response) => {
@@ -50,8 +50,8 @@ exports.getProfById = async (request, response) => {
  * - 404 : Aucun professeur associé à cette classe ou classe inexistante.
  *
  * @async
- * @param {import('express').Request} request - Requête HTTP contenant l’identifiant de la classe (`request.params.classeId`).
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête HTTP contenant l’identifiant de la classe (`request.params.classeId`).
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.getProfByClasseId = async (request, response) => {
@@ -72,8 +72,8 @@ exports.getProfByClasseId = async (request, response) => {
  * - 500 : Erreur interne lors de la création.
  *
  * @async
- * @param {import('express').Request} request - Requête HTTP contenant les données du prof dans `request.body`.
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête HTTP contenant les données du prof dans `request.body`.
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.createProf = async (request, response) => {
@@ -96,8 +96,8 @@ exports.createProf = async (request, response) => {
  * - 500 : Erreur interne lors de la mise à jour.
  *
  * @async
- * @param {import('express').Request} request - Requête HTTP contenant l’identifiant du prof (`request.params.id`) et les nouvelles données dans `request.body`.
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête HTTP contenant l’identifiant du prof (`request.params.id`) et les nouvelles données dans `request.body`.
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.updateProf = async (request, response) => {
@@ -119,8 +119,8 @@ exports.updateProf = async (request, response) => {
  * - 500 : Erreur interne lors de la suppression.
  *
  * @async
- * @param {import('express').Request} request - Requête HTTP contenant l’identifiant du prof à supprimer (`request.params.id`).
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête HTTP contenant l’identifiant du prof à supprimer (`request.params.id`).
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.deleteProf = async (request, response) => {

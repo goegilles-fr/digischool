@@ -36,7 +36,7 @@ exports.getClasseById = async (id) => {
  * - `classe.profId` ne doit pas être `null` ou `undefined`.
  *
  * @async
- * @param {{ nom?: string, profId?: number|null }} classe - Données de la classe à créer.
+ * @param {{ nom: string, profId: number|null }} classe - Données de la classe à créer.
  * @returns {Promise<Object|null>} La classe créée, ou `null` si les données sont invalides.
  */
 exports.createClasse = async (classe) => {
@@ -53,7 +53,7 @@ exports.createClasse = async (classe) => {
  *
  * @async
  * @param {number|string} id - Identifiant de la classe à mettre à jour.
- * @param {{ nom?: string, profId?: number|null }} classe - Données à mettre à jour.
+ * @param {{ nom: string, profId: number|null }} classe - Données à mettre à jour.
  * @returns {Promise<Object>} La classe mise à jour.
  */
 exports.updateClasse = async (id, classe) => {

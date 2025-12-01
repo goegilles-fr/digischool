@@ -105,13 +105,19 @@ docker run -d \
 - **cookie-parser**  - Parsing des cookies pour JWT
 - **dotenv**  - Gestion des variables d'environnement
 
+### Documentation
+- **jsdoc** - Librairie permettant de généré automatiquement une page html contenant la documentation du projet.
+- **Swagger** - Permet d'afficher tout les endpoints documentés de l'api rest et de faire des requêtes http dessus. 
+
+### Tests
+- **jest** - Permet de réaliser des tests unitaires avec mocks
 
 ### Utilisation avec Authentification
 
-1. Créer un compte via `POST /api/auth/register`
-2. Se connecter via `POST /api/auth/login` pour obtenir un token JWT
+1. Créer un compte via `POST /api/auth/register` pour obtenir un token
+2. Si on a déjà un compte, se connecter via `POST /api/auth/login` pour obtenir un token JWT
 3. Cliquer sur le bouton **"Authorize"** en haut de la page Swagger
-4. Entrer le token au format: `Bearer votre_token_jwt`
+4. Entrer le token dans le champ (Swagger ajoutera automatiquement le préfix 'Bearer ')
 5. Tester les endpoints protégés
 
 

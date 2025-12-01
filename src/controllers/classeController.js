@@ -15,8 +15,8 @@ const classeService = require('../services/classeService');
  * - 200 : Tableau de classes sérialisé en JSON.
  *
  * @async
- * @param {import('express').Request} request - Requête HTTP entrante.
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête HTTP entrante.
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.getAllClasse = async (request, response) => {
@@ -32,8 +32,8 @@ exports.getAllClasse = async (request, response) => {
  * - 404 : Aucune classe ne correspond à l'identifiant fourni.
  *
  * @async
- * @param {import('express').Request} request - Requête contenant l'identifiant de la classe (`request.params.id`).
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête contenant l'identifiant de la classe (`request.params.id`).
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.getClasseById = async (request, response) => {
@@ -54,8 +54,8 @@ exports.getClasseById = async (request, response) => {
  * - 500 : Erreur interne lors de la création.
  *
  * @async
- * @param {import('express').Request} request - Requête contenant les données de la classe dans `request.body`.
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête contenant les données de la classe dans `request.body`.
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.createClasse = async (request, response) => {
@@ -78,8 +78,8 @@ exports.createClasse = async (request, response) => {
  * - 500 : Erreur interne lors de la mise à jour.
  *
  * @async
- * @param {import('express').Request} request - Requête contenant l'identifiant (`request.params.id`) et les nouvelles données (`request.body`).
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête contenant l'identifiant (`request.params.id`) et les nouvelles données (`request.body`).
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.updateClasse = async (request, response) => {
@@ -101,8 +101,8 @@ exports.updateClasse = async (request, response) => {
  * - 500 : Erreur interne lors de la suppression.
  *
  * @async
- * @param {import('express').Request} request - Requête contenant l'identifiant de la classe à supprimer (`request.params.id`).
- * @param {import('express').Response} response - Objet de réponse HTTP.
+ * @param {Request} request - Requête contenant l'identifiant de la classe à supprimer (`request.params.id`).
+ * @param {Response} response - Objet de réponse HTTP.
  * @returns {Promise<void>} Envoie la réponse HTTP.
  */
 exports.deleteClasse = async (request, response) => {
