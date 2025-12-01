@@ -3,6 +3,8 @@
 
 A Node.js/Express REST API for managing schools, students, teachers, classes, subjects, and grades.
 
+Membres du projet : Julien BURTE, Dmitry KORZHENEVSKIV, Tommy BOUBAKER
+
 ## 📋 Description du Projet
 
 DigiSchool est une API REST complète permettant de gérer un établissement scolaire. Le système permet de:
